@@ -52,10 +52,11 @@ A comprehensive stock market analytics platform for NSE (National Stock Exchange
 ```
 SW_Intern_assignment/
 ├── backend/
+│   ├── requirements.txt    # Python dependencies
 │   ├── app.py              # FastAPI application and routes
 │   ├── database.py         # SQLAlchemy setup & session management
 │   ├── models.py           # ORM models (StockData)
-│   ├── charts.py           # Matplotlib chart generation [NEW]
+│   ├── charts.py           # Matplotlib chart generation
 │   ├── stock_data.db       # SQLite database (auto-created)
 │   └── data/               # CSV fallback storage
 ├── frontend/
@@ -65,7 +66,6 @@ SW_Intern_assignment/
 │   │   └── main.jsx        # Entry point
 │   ├── package.json        # Dependencies
 │   └── vite.config.js      # Vite configuration
-├── requirements.txt        # Python dependencies
 └── README.md               # This file
 ```
 
@@ -95,6 +95,9 @@ cd SW_Intern_assignment
 
 ### Step 2: Python Setup
 ```bash
+# Navigate to backend
+cd backend
+
 # Create virtual environment
 python -m venv .venv
 
@@ -106,6 +109,9 @@ source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Navigate back to root
+cd ..
 ```
 
 ### Step 3: Frontend Setup
@@ -446,6 +452,7 @@ DATABASE_URL=sqlite:///stock_data.db
 
 ### Issue: `ModuleNotFoundError: No module named 'sqlalchemy'`
 ```bash
+cd backend
 pip install -r requirements.txt
 ```
 
@@ -491,7 +498,7 @@ Educational assignment for internship program.
 
 ## 1. Backend setup
 
-From project root:
+From backend folder:
 
 ```bash
 python -m venv .venv
