@@ -1,0 +1,255 @@
+:root {
+	--ink: #152238;
+	--paper: #f2efe8;
+	--panel: #fffdfa;
+	--brand: #0f4c5c;
+	--accent: #e36414;
+	--ok: #007f5f;
+	--danger: #bc4749;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: "Space Grotesk", "Segoe UI", sans-serif;
+	color: var(--ink);
+	background:
+		radial-gradient(circle at 10% 10%, #f7d9b9 0%, transparent 40%),
+		radial-gradient(circle at 90% 80%, #cde8d6 0%, transparent 35%),
+		var(--paper);
+	min-height: 100vh;
+}
+
+#root {
+	min-height: 100vh;
+}
+
+.app-shell {
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	gap: 20px;
+	min-height: 100vh;
+	padding: 18px;
+}
+
+.left-rail {
+	background: linear-gradient(180deg, #0f4c5c 0%, #194f57 100%);
+	border-radius: 20px;
+	color: #f8fafc;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 16px 40px rgba(15, 76, 92, 0.22);
+}
+
+.left-rail h1 {
+	font-family: "Bricolage Grotesque", "Segoe UI", sans-serif;
+	margin: 0;
+	font-size: 1.9rem;
+}
+
+.left-rail p {
+	margin-top: 8px;
+	margin-bottom: 18px;
+	color: #d6e8eb;
+}
+
+.company-list {
+	display: grid;
+	gap: 10px;
+}
+
+.company {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	background: rgba(255, 255, 255, 0.07);
+	color: #fff;
+	border-radius: 12px;
+	padding: 11px;
+	text-align: left;
+	cursor: pointer;
+	transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.company:hover {
+	transform: translateY(-2px);
+	background: rgba(255, 255, 255, 0.15);
+}
+
+.company.active {
+	background: linear-gradient(90deg, #e36414, #f08c42);
+	border-color: transparent;
+}
+
+.company span {
+	display: block;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+.company small {
+	color: #f6f8f8;
+}
+
+.main-panel {
+	display: grid;
+	grid-template-rows: auto auto auto auto auto;
+	gap: 16px;
+}
+
+.panel-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+	gap: 12px;
+}
+
+.panel-header h2 {
+	margin: 0;
+	font-family: "Bricolage Grotesque", "Segoe UI", sans-serif;
+	font-size: 2rem;
+}
+
+.panel-header p {
+	margin: 6px 0 0;
+	color: #43566f;
+}
+
+.range-switcher {
+	display: inline-flex;
+	background: #fff;
+	border: 1px solid #dfdfdf;
+	border-radius: 999px;
+	padding: 3px;
+}
+
+.range-btn {
+	border: none;
+	background: transparent;
+	color: #2c3a4e;
+	font-weight: 700;
+	border-radius: 999px;
+	padding: 8px 14px;
+	cursor: pointer;
+}
+
+.range-btn.active {
+	background: var(--brand);
+	color: #fff;
+}
+
+.cards-grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(130px, 1fr));
+	gap: 12px;
+}
+
+.cards-grid article,
+.chart-card,
+.insights-grid article {
+	background: var(--panel);
+	border: 1px solid #e8e8e8;
+	border-radius: 16px;
+	box-shadow: 0 6px 18px rgba(27, 44, 63, 0.08);
+}
+
+.cards-grid article {
+	padding: 14px;
+}
+
+.cards-grid h3 {
+	margin: 0;
+	font-size: 0.9rem;
+	color: #4a5e7a;
+}
+
+.cards-grid strong {
+	margin-top: 8px;
+	display: block;
+	font-size: 1.2rem;
+}
+
+.chart-card {
+	padding: 14px;
+	height: 310px;
+}
+
+.chart-card h3 {
+	margin-top: 0;
+}
+
+.insights-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(180px, 1fr));
+	gap: 12px;
+}
+
+.insights-grid article {
+	padding: 14px;
+}
+
+.insights-grid h3 {
+	margin-top: 0;
+	font-size: 1rem;
+}
+
+.compare-controls {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.compare-controls select {
+	border: 1px solid #ced7df;
+	border-radius: 8px;
+	padding: 6px;
+}
+
+.compare-card {
+	height: 280px;
+}
+
+.error-box {
+	background: #fff2f2;
+	border: 1px solid #f5c8c9;
+	color: #8f1f20;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+@media (max-width: 1100px) {
+	.app-shell {
+		grid-template-columns: 1fr;
+	}
+
+	.left-rail {
+		position: static;
+	}
+}
+
+@media (max-width: 860px) {
+	.cards-grid {
+		grid-template-columns: repeat(2, minmax(120px, 1fr));
+	}
+
+	.insights-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.panel-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+@media (max-width: 520px) {
+	.cards-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.app-shell {
+		padding: 12px;
+	}
+}
