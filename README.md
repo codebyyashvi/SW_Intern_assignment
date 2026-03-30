@@ -35,7 +35,7 @@ A comprehensive stock market analytics platform for NSE (National Stock Exchange
 ✅ **Multiple Companies** — 16 NSE stocks preloaded  
 ✅ **Flexible Time Ranges** — 30/90/180 day views  
 ✅ **Stock Comparison** — Correlation coefficient calculation  
-✅ **Chart Integration** — Matplotlib-generated visualizations  
+✅ **Chart Integration** — Interactive Chart.js visualizations  
 ✅ **Production UI** — Modern, responsive design  
 
 ### Data Metrics
@@ -56,7 +56,6 @@ SW_Intern_assignment/
 │   ├── app.py              # FastAPI application and routes
 │   ├── database.py         # SQLAlchemy setup & session management
 │   ├── models.py           # ORM models (StockData)
-│   ├── charts.py           # Matplotlib chart generation
 │   ├── stock_data.db       # SQLite database (auto-created)
 │   └── data/               # CSV fallback storage
 ├── frontend/
@@ -270,14 +269,12 @@ GET /compare?symbol1=INFY&symbol2=TCS&days=90&refresh=false
 }
 ```
 
-### Generate Charts (NEW with Matplotlib)
+### Compare Two Stocks (with Charts)
 ```
-GET /chart/price/{symbol}?days=90
-GET /chart/volatility/{symbol}?days=90
-GET /chart/comparison?symbol1=INFY&symbol2=TCS&days=90
+GET /compare?symbol1=INFY&symbol2=TCS&days=90&refresh=false
 ```
 
-**Response:** Base64-encoded PNG images ready for frontend display
+**Response:** Performance comparison data with correlation coefficient (see response example above)
 
 ---
 
@@ -408,13 +405,13 @@ CREATE INDEX idx_symbol_date ON stock_data(symbol, date);
 | SQLite | Built-in | Persistent data storage |
 | Pandas | Latest | Data transformation |
 | yfinance | 0.2.65+ | Financial data source |
-| Matplotlib | 3.8+ | Chart generation |
-| Pillow | 10.0+ | Image processing |
 
 ### Frontend
 | Technology | Version | Purpose |
 |-----------|---------|---------|
 | React | 19.2+ | UI framework |
+| Chart.js | 4.5+ | Interactive charting |
+| react-chartjs-2 | 5.3+ | React wrapper for Chart.js |
 | Vite | 8.0+ | Build tool |
 | CSS Grid/Flexbox | Native | Responsive layout |
 | Tailwind CSS | 3.4+ | Utility styling |
