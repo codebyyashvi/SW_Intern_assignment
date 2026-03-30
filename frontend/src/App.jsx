@@ -128,19 +128,22 @@ function App() {
         {
           label: `${selectedSymbol} Close`,
           data: closePoints,
-          borderColor: '#0f4c5c',
-          backgroundColor: 'rgba(15, 76, 92, 0.16)',
-          tension: 0.25,
+          borderColor: 'var(--brand)',
+          backgroundColor: 'rgba(15, 76, 92, 0.08)',
+          tension: 0.3,
           fill: true,
           pointRadius: 0,
+          borderWidth: 2,
         },
         {
           label: '7-day MA',
           data: maPoints,
-          borderColor: '#e36414',
-          backgroundColor: 'rgba(227, 100, 20, 0.2)',
-          tension: 0.25,
+          borderColor: 'var(--accent)',
+          backgroundColor: 'transparent',
+          tension: 0.3,
           pointRadius: 0,
+          borderWidth: 2,
+          borderDash: [5, 5],
         },
       ],
     }
@@ -157,16 +160,20 @@ function App() {
         {
           label: `${comparison.symbol1} Performance %`,
           data: comparison.performance.map((row) => row.perf_1),
-          borderColor: '#007f5f',
+          borderColor: '#059669',
+          backgroundColor: 'rgba(5, 150, 105, 0.08)',
           pointRadius: 0,
-          tension: 0.2,
+          tension: 0.3,
+          borderWidth: 2,
         },
         {
           label: `${comparison.symbol2} Performance %`,
           data: comparison.performance.map((row) => row.perf_2),
-          borderColor: '#bc4749',
+          borderColor: '#dc2626',
+          backgroundColor: 'rgba(220, 38, 38, 0.08)',
           pointRadius: 0,
-          tension: 0.2,
+          tension: 0.3,
+          borderWidth: 2,
         },
       ],
     }
@@ -256,7 +263,10 @@ function App() {
         <section className="chart-card">
           <h3>Closing Price Trend</h3>
           {loading ? (
-            <p>Loading chart data...</p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '12px' }}>
+              <div className="loading-spinner"></div>
+              <span className="loading-text">Loading chart...</span>
+            </div>
           ) : (
             <Line
               data={chartData}
@@ -264,8 +274,10 @@ function App() {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                  legend: { position: 'bottom' },
+                  legend: { position: 'bottom', labels: { usePointStyle: true, padding: 16 } },
+                  filler: { propagate: true },
                 },
+                interaction: { mode: 'index', intersect: false },
               }}
             />
           )}
@@ -313,8 +325,9 @@ function App() {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                  legend: { position: 'bottom' },
+                  legend: { position: 'bottom', labels: { usePointStyle: true, padding: 16 } },
                 },
+                interaction: { mode: 'index', intersect: false },
               }}
             />
           </section>
